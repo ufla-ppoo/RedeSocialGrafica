@@ -1,6 +1,6 @@
 # Rede Social Gráfica
 
-Este projeto de exemplo é usado para exercitar os conceitos de *GUI* (Interfaces Gráficas de Usuário) e Tratamentos de Exceção.
+Este projeto é usado para exercitar os conceitos de *GUI* (Interfaces Gráficas de Usuário) e Tratamento de Exceção.
 
 A implementação usa como base uma versão traduzida do exemplo do livro *Programacao Orientada a Objetos com Java - uma introducao pratica utilizando BlueJ*, de **Barnes e Kolling**.
 
@@ -8,34 +8,43 @@ A implementação usa como base uma versão traduzida do exemplo do livro *Progr
 
 Em relação ao projeto de exemplo `RedeSocial`, usado anteriormente nas aulas de Polimorfismo, este projeto acrescenta:
 
+- Um atributo ID (identificador) para cada mensagem.
+- A implementação das operações de curtir e comentar na classe `FeedNoticiais`.
 - Uma interface chamada `Publicacao` que é implementada pela classe Mensagem.
-- A implementação das operações de curtir e comentar uma mensagem.
 - Uma classe chamada `TelaRedeSocial` que implementa a interface gráfica para a Rede Social.
 
 ## Exercícios - Parte 1 - Interfaces Gráficas
 
-Faça os passos abaixo. Não esqueça de fazer `commit` e sincronizar as alterações após cada passo terminado.
+Faça os passos abaixo.
+Não esqueça de:
+- Testar sua implementação a cada passo.
+- Fazer `commit` e sincronizar as alterações após cada passo terminado.
+
+### Passo 1.0
+
+Execute o programa e veja como ele funciona (o que faz e o que ainda não faz).
+
+Em seguida avalie o código do programa.
+Veja que a interface `Publicacao` foi criada para que a classe `TelaRedeSocial` tivesse acesso às publicações, mas sem poder alterá-las (diminuindo o acoplamento).
 
 ### Passo 1.1
 
-O botão `Comentar` não está fazendo nada. 
-Faça as implementações necessárias para que ele passe a funcionar (veja o tratamento do botão `Curtir` como exemplo).
+Você deve ter notado que o botão `Comentar` não está fazendo nada. 
+Faça as implementações necessárias para que ele passe a funcionar (dica: veja o tratamento do botão `Curtir` como exemplo).
 
 ### Passo 1.2
 
-Acrescente um botão `Atualizar` que atualize (recarregue) o Feed de Notícias.
+Acrescente na tela um botão `Atualizar` que recarregue o Feed de Notícias.
 
 ### Passo 1.3
 
 O Feed de Notícias da Rede Social tem tamanho fixo.
 Se as mensagens não couberem na tela, elas simplesmente não aparecem.
-Vamos melhorar isso colocando o componente que mostra o feed de notícias em um `JScrollPane` (um painel que mostra barras de rolagem quando necessário).
+Vamos melhorar isso colocando o componente que mostra o feed de notícias dentro de um `JScrollPane` (um painel que mostra barras de rolagem quando necessário).
 
 Para fazer isso, basta:
 - Criar um `JScrollPane` passando o componente do feed como parâmetro do construtor.
-- E então adicionar o `JScrollPane` na janela (ao invés do componente).
-
-Teste sua implementação.
+- E então adicionar o `JScrollPane` na janela (ao invés do componente do feed).
 
 ### Passo 1.4
 
@@ -43,18 +52,17 @@ Que tal mudarmos a fonte do nosso Feed de Notícias?
 
 A classe `JTextArea` tem um método chamado `setFont` que muda a fonte utilizada.
 Ele espera um objeto da classe `Font` que pode ser criado passando-se o nome da fonte, um estilo e o tamanho da fonte (ex: `new Font("Serif", Font.ITALIC, 16)`).
-
-Teste sua implementação.
+Fique à vontade para escolher a fonte que prefere utilizar.
 
 ### Passo 1.5
 
 Nossa Rede Social mostra no Feed de Notícias as mensagens de todos os autores. 
-Suponha que precisemos de uma forma para encontrar mais facilmente as mensagens de um determinado autor.
-Podemos, por exemplo, criar uma caixa de seleção para selecionar um autor e o Feed de Notícias mostrar apenas as mensagens daquele autor.
-Para fazermos isso, vamos seguir os passos abaixo:
+Suponha que queiramos uma forma mais simples de encontrar as mensagens de um determinado autor.
+Podemos, por exemplo, criar uma caixa de seleção para selecionar um autor, e o Feed de Notícias mostrar apenas as mensagens daquele autor.
+Para isso, faça o seguinte:
 
 1. Altere a classe `FeedNoticias` para que ela tenha uma lista com os autores das mensagens.
-   Toda vez que uma nova mensagem for adicionada, se o autor ainda não está na lista, ele é incluído.
+   Uma das formas de fazer isso é: toda vez que uma nova mensagem for adicionada, se o autor ainda não está na lista, ele é incluído.
    Crie também um método para retornar a lista com todos os autores (cuidado com o encapsulamento!).
    Faça as alterações necessárias e teste o programa.
 
@@ -62,51 +70,53 @@ Para fazermos isso, vamos seguir os passos abaixo:
    Teste sua implementação.
 
 3. Vamos agora acrescentar à nossa tela uma caixa para o usuário selecionar o autor das mensagens que ele quer ver.
-   Uma caixa de  seleção é um objeto da classe `JComboBox`, que tem uma lista de objetos (cada objeto será uma opção na caixa de seleção).
+   Uma caixa de  seleção é um objeto da classe `JComboBox` que possui uma lista de objetos (e cada objeto se torna uma opção na caixa de seleção).
    Vamos então:
 
     - Criar a caixa de seleção.
     - Colocar a caixa de seleção dentro de um painel que esteja na área superior (`NORTH`) do `BorderLayout`.
-    - Criar um método que esvazia e preenche a caixa de seleção com os autores. 
-      Para isso, use os métodos da classe `JComboBox`: `removeAllItems` e `addItem`.
-      Você deve sempre adicionar primeiro a string `"Todos"` e depois cada um dos autores retornados pelo feed de Notícias.
-      O método criado deve ser chamado tanto após a criação da caixa de seleção, como também toda vez que uma mensagem for postada.
-    - Tratar o evento de clique da caixa de seleção da mesma forma que fazemos para os botões e atualizar o feed de notícias de acordo com o autor escolhido (dica: a classe `JComboBox` tem o método `getSelectedItem` que retorna o item selecionado).
+    - Criar um método que recarrega a caixa de seleção com os autores. 
+      Para isso, use os métodos `removeAllItems` e `addItem` da classe `JComboBox`.
+      Você deve sempre adicionar primeiro a string `"Todos"` e, depois, cada um dos autores retornados pelo feed de notícias.
+      O método criado deve ser chamado logo após a criação da caixa de seleção, e também toda vez que uma nova mensagem for postada.
+    - Tratar o evento de clique da caixa de seleção da mesma forma que fazemos para os botões e atualizar o feed de notícias de acordo com o autor escolhido (dica: a classe `JComboBox` tem o método `getSelectedItem` que retorna o item selecionado na lista).
 
 Teste suas implementações.
 
 ### (Opcional) Passo 1.6
 
-Vamos criar um menu com as opções: Postar Mensagem, Curtir, Comentar e Sair. 
+Vamos criar um menu com as opções: `Postar Mensagem`, `Curtir`, `Comentar` e `Sair`.
 Crie os menus e trate os eventos conforme necessário.
 
 Dica: use os slides da aula de Interfaces Gráficas para ver exemplos de criação dos menus.
 
-Teste sua implementação.
-
 ### (Opcional) Passo 1.7
 
-Vamos agora fazer com que um menu popup apareça quando clicamos na área de texto do feed de notícias.
-Para isso, você precisará tratar os eventos de mouse da área de texto (use `addMouseListener`).
-No evento de clique do mouse você exibirá um menu popup criado conforme descrição abaixo.
+Vamos agora fazer com que um menu *popup* apareça quando clicamos na área de texto do feed de notícias.
+Para isso, você precisará tratar os eventos de mouse da área de texto (use o método `addMouseListener`).
+No evento de clique do mouse você exibirá um menu *popup* criado conforme descrição abaixo.
 
-O menu popup (classe `JPopupMenu`) funciona como um menu normal, ou seja, ele é formado por objetos do tipo `JMenuItem`.
-Nosso menu popup deverá ter os ítems de menu: Atualizar e Limpar. 
-O primeiro atualiza o feed (como o botão do Passo 1.2), já o segundo deve limpar o feed de notícias.
+Um menu *popup* (classe `JPopupMenu`) funciona como um menu normal, ou seja, ele é formado por objetos do tipo `JMenuItem`.
+Nosso menu *popup* deverá ter os ítens de menu: `Atualizar` e `Limpar`. 
+O primeiro recarrega o feed (como o botão do Passo 1.2), já o segundo deve limpar o feed de notícias.
 
-Obs: a classe `JPopupMenu` possui um método `show` que espera um componente e a posição x, y onde o menu deve aparecer (obtenha essas informações do objeto `MouseEvent`, que vem por parâmetro no tratamento do clique do mouse).
+Obs: a classe `JPopupMenu` possui um método `show` que espera um componente e a posição `x`, `y` onde o menu deve aparecer (obtenha essas informações do objeto `MouseEvent`, que vem por parâmetro no tratamento do clique do mouse).
 
 ## Exercícios - Parte 2 - Tratamentos de Exceção
 
-Faça os passos abaixo. Não esqueça de fazer `commit` e sincronizar as alterações após cada passo terminado.
+Faça os passos abaixo.
+Assim como na primeira parte, não se esqueça de:
+- Testar sua implementação a cada passo.
+- Fazer `commit` e sincronizar as alterações após cada passo terminado.
 
 ### Passo 2.1
 
 O botão `Curtir` e o botão `Comentar` pedem para o usuário o identificador da mensagem.
-Mas se o usuário passar um identificador de uma mensagem que não existe, ocorre um erro na aplicação.
+Mas se o usuário informar um identificador de uma mensagem que não existe, ocorre um erro na aplicação (você pode ver a mensagem de erro no terminal da IDE).
 O que poderia ser feito para evitar este tipo de problema?
 O método no Feed de Notícias poderia alterar seu tipo de retorno, por exemplo?
-Quais são as vantagens e desvantagens dessa abordagem?
+
+- Quais são as vantagens e desvantagens dessa abordagem?
 
 *... escreva aqui sua resposta ...*
 
@@ -115,9 +125,9 @@ Quais são as vantagens e desvantagens dessa abordagem?
 Altere o método que trata as curtidas no Feed de Notícias para que ele lance uma exceção caso o identificador da mensagem não exista (use exceção do tipo `RuntimeException`).
 
 Teste sua aplicação sem ainda tratar a exceção.
-Veja que o erro que aparece é da mensagem que você usou ao criar o objeto da exceção.
+Veja que a mensagem de erro que aparece é a que você usou ao criar o objeto da exceção.
 
-Agora faça o tratamento de exceção na classe da `TelaRedeSocial`.
+Agora faça o tratamento da exceção na classe `TelaRedeSocial`.
 Por enquanto, apenas exiba a mensagem tratada para o usuário (dica: você pode usar a classe `JOptionPane` para exibir uma mensagem).
 
 ### Passo 2.3:
@@ -129,22 +139,23 @@ Altere então o código de forma que o programa continue pedindo o identificador
 
 ### Passo 2.4:
 
-Depois da alteração anterior, o que acontece com seu programa caso não exista nenhuma mensagem?
+Depois da alteração anterior, o que acontece com seu programa caso o usuário tente curtir uma mensagem antes de existir qualquer publicação?
 Caso não tenha tratado esse caso, faça o tratamento adequado agora.
 
 ### Passo 2.5:
 
-Do jeito que fizemos até agora está sendo retornada apenas uma mensagem de erro.
+Do jeito que fizemos até agora, o programa apenas exibe a mesma mensagem de erro da exceção.
 Mas pode ser que queiramos exibir uma mensagem mais amigável para o usuário.
-A mensagem do lançamento da exceção é escrita para o programador e nem sempre faz sentido para o usuário.
-Dessa forma, pode ser que que, capture a exceção queira usar os dados disponíveis da exceção para montar sua própria mensagem.
+A mensagem do lançamento da exceção é escrita para outros programadores e nem sempre faz sentido para um usuário.
+Dessa forma, pode ser interessante capturar a exceção e usar os dados disponíveis nela para montar uma mensagem mais apropriada.
 
 Crie então um classe `MensagemNaoEncontradaException` que herda da classe `RuntimeException`.
-A classe deverá ter como atributo o identificador da mensagem (obs: veja que a mensagem da exceção pode ser definida dentro da própria classe). 
-Dessa forma, ao usá-la para lançarmos uma exceção não precisamos nos preocupar a mensagem (devemos fornecer apenas o identificador da mensagem no construtor).
+A classe deverá ter como atributo o identificador utilizado.
+Veja que o construtor pode receber apenas o identificador, e ele mesmo montar a mensagem da exceção. 
+Dessa forma, ao lançarmos uma exceção com essa classe, não precisamos nos preocupar a mensagem.
 
 Faça com que seja lançada uma exceção dessa classe.
-Altere a classe da `TelaRedeSocial` para que capture uma exceção desse tipo e defina sua própria mensagem para o usuário buscando o identificador da mensagem a partir do objeto da exceção.
+Altere a classe `TelaRedeSocial` para que capture uma exceção desse tipo e defina sua própria mensagem para o usuário buscando o identificador da mensagem a partir do objeto da exceção.
 
 ### (Opcional) Passo 2.6:
 
@@ -155,6 +166,5 @@ Execute o programa para confirmar que do ponto de vista do usuário nada mudou (
 
 Apenas como forma de testar nossa última alteração, acrescente dentro do método `Curtir` da classe `Mensagem` uma divisão por zero qualquer.
 Isso terá um efeito de provocar uma exceção que não é do tipo `MensagemNaoEncontradaException`. 
-Dessa
-forma, o tratamento deverá cair no caso geral de apenas mostrar a mensagem de erro.
+Dessa forma, o tratamento deverá cair no caso geral de apenas mostrar a mensagem de erro.
 

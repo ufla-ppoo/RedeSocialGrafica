@@ -6,8 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -91,11 +93,16 @@ public class TelaRedeSocial {
      */
     private void montarJanela() {
         janela.setSize(500, 600);
+        
         // Para mais detalhes sobre o BorderLayout acesse:
         // https://docs.oracle.com/javase/tutorial/uiswing/layout/border.html
         janela.setLayout(new BorderLayout());
         
-        janela.add(areaTextoFeed, BorderLayout.CENTER);
+        JPanel painelCentral = new JPanel();
+        painelCentral.setLayout(new BoxLayout(painelCentral, BoxLayout.Y_AXIS));
+        painelCentral.add(new JLabel("Feed de Notícias"));
+        painelCentral.add(areaTextoFeed);
+        janela.add(painelCentral, BorderLayout.CENTER);
         
         JPanel painelBotoes = new JPanel();
         painelBotoes.setLayout(new FlowLayout());
