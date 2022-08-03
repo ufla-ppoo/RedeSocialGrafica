@@ -81,6 +81,15 @@ public class FeedNoticias {
         Mensagem mensagem = buscarMensagemPeloId(idMensagem);
         mensagem.comentar(comentario);
     }
+
+    /**
+     * Retorna a quantidade de mensagens publicadas
+     * 
+     * @return A quantidade de mensagens já publicadas
+     */
+    public int nroMensagens() {
+        return mensagens.size();
+    }
     
     /**
      * Retorna a mensagem correspondente ao identificador passado. Retorna null

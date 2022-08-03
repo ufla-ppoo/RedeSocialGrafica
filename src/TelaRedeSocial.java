@@ -63,7 +63,7 @@ public class TelaRedeSocial {
      */
     private void criarComponentes() {
         // criando os componentes
-        areaTextoFeed = new JTextArea("Feed de Notícias");
+        areaTextoFeed = new JTextArea();
         botaoPostarMensagem = new JButton("Postar Mensagem");
         botaoCurtir = new JButton("Curtir");
         botaoComentar = new JButton("Comentar");

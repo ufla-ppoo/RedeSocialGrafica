@@ -70,16 +70,18 @@ Para isso, faça o seguinte:
    Teste sua implementação.
 
 3. Vamos agora acrescentar à nossa tela uma caixa para o usuário selecionar o autor das mensagens que ele quer ver.
-   Uma caixa de  seleção é um objeto da classe `JComboBox` que possui uma lista de objetos (e cada objeto se torna uma opção na caixa de seleção).
+   Uma caixa de seleção é um objeto da classe `JComboBox` que possui uma lista de objetos (e cada objeto se torna uma opção na caixa de seleção).
    Vamos então:
 
-    - Criar a caixa de seleção.
+    - Criar a caixa de seleção (obs.: um `JComboBox<T>` depende de um segundo tipo `T`, assim como um `ArrayList`).
     - Colocar a caixa de seleção dentro de um painel que esteja na área superior (`NORTH`) do `BorderLayout`.
     - Criar um método que recarrega a caixa de seleção com os autores. 
       Para isso, use os métodos `removeAllItems` e `addItem` da classe `JComboBox`.
       Você deve sempre adicionar primeiro a string `"Todos"` e, depois, cada um dos autores retornados pelo feed de notícias.
       O método criado deve ser chamado logo após a criação da caixa de seleção, e também toda vez que uma nova mensagem for postada.
-    - Tratar o evento de clique da caixa de seleção da mesma forma que fazemos para os botões e atualizar o feed de notícias de acordo com o autor escolhido (dica: a classe `JComboBox` tem o método `getSelectedItem` que retorna o item selecionado na lista).
+    - Alterar o método `atualizarAreaTextoFeed` para que ele carregue o feed de acordo com a escolha do usuário na caixa de seleção (dica: você pode obter a opção escolhida pelo usuário usando os métodos `getItemAt`e `getSelectedIndex` da classe `JComboBox`)
+    - Tratar o evento de clique da caixa de seleção da mesma forma que fazemos para os botões e atualizar o feed de notícias de acordo com o autor escolhido. **Importante**: quando os itens da caixa de seleção são alterados, o evento de clique é gerado; então, para evitar erros, é necessário garantir que a atualização do feed não será feita enquanto os itens estão sendo recarregados (dica: use um `boolean` para isso).
+    - Dica: seria interessante acrescentar também um rótulo para informar o autor que a caixa de seleção é para escolher o autor.
 
 Teste suas implementações.
 
@@ -128,7 +130,13 @@ Teste sua aplicação sem ainda tratar a exceção.
 Veja que a mensagem de erro que aparece é a que você usou ao criar o objeto da exceção.
 
 Agora faça o tratamento da exceção na classe `TelaRedeSocial`.
-Por enquanto, apenas exiba a mensagem tratada para o usuário (dica: você pode usar a classe `JOptionPane` para exibir uma mensagem).
+Por enquanto, apenas exiba a mensagem tratada para o usuário
+
+Dica: você pode usar a classe `JOptionPane` para exibir uma mensagem como no exemplo abaixo:
+
+```java
+JOptionPane.showMessageDialog(janela, "Uma mensagem de erro", "Um titulo", JOptionPane.ERROR_MESSAGE);
+```
 
 ### Passo 2.3:
 
@@ -149,13 +157,14 @@ Mas pode ser que queiramos exibir uma mensagem mais amigável para o usuário.
 A mensagem do lançamento da exceção é escrita para outros programadores e nem sempre faz sentido para um usuário.
 Dessa forma, pode ser interessante capturar a exceção e usar os dados disponíveis nela para montar uma mensagem mais apropriada.
 
-Crie então um classe `MensagemNaoEncontradaException` que herda da classe `RuntimeException`.
+Crie então um classe `MensagemNaoEncontradaException` que herda da classe `NoSuchElementException` (escolhemos herdar dela pois ela representa a situação do erro que estamos tratando).
 A classe deverá ter como atributo o identificador utilizado.
-Veja que o construtor pode receber apenas o identificador, e ele mesmo montar a mensagem da exceção. 
+Veja que o construtor pode receber apenas o identificador e não precisa, necessariamente, montar uma mensagem da exceção. 
 Dessa forma, ao lançarmos uma exceção com essa classe, não precisamos nos preocupar a mensagem.
 
-Faça com que seja lançada uma exceção dessa classe.
+Faça com que seja lançada uma exceção da classe criada.
 Altere a classe `TelaRedeSocial` para que capture uma exceção desse tipo e defina sua própria mensagem para o usuário buscando o identificador da mensagem a partir do objeto da exceção.
+(Obs.: nesse exemplo específico, não seria necessário obter o id da classe de exceção, pois temos isso em uma variável no método onde ocorre o erro; mas é apenas uma maneira didática de exercitar o conceito).
 
 ### (Opcional) Passo 2.6:
 
