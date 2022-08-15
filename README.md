@@ -9,7 +9,7 @@ A implementação usa como base uma versão traduzida do exemplo do livro *Progr
 Em relação ao projeto de exemplo `RedeSocial`, usado anteriormente nas aulas de Polimorfismo, este projeto acrescenta:
 
 - Um atributo ID (identificador) para cada mensagem.
-- A implementação das operações de curtir e comentar na classe `FeedNoticiais`.
+- A implementação das operações de curtir e comentar na classe `FeedNoticias`.
 - Uma interface chamada `Publicacao` que é implementada pela classe Mensagem.
 - Uma classe chamada `TelaRedeSocial` que implementa a interface gráfica para a Rede Social.
 
@@ -58,7 +58,7 @@ Fique à vontade para escolher a fonte que prefere utilizar.
 
 Nossa Rede Social mostra no Feed de Notícias as mensagens de todos os autores. 
 Suponha que queiramos uma forma mais simples de encontrar as mensagens de um determinado autor.
-Podemos, por exemplo, criar uma caixa de seleção para selecionar um autor, e o Feed de Notícias mostrar apenas as mensagens daquele autor.
+Podemos, por exemplo, criar uma caixa de seleção para selecionar um autor, e exibir no Feed de Notícias apenas as mensagens daquele autor.
 Para isso, faça o seguinte:
 
 1. Altere a classe `FeedNoticias` para que ela tenha uma lista com os autores das mensagens.
@@ -80,8 +80,8 @@ Para isso, faça o seguinte:
       Você deve sempre adicionar primeiro a string `"Todos"` e, depois, cada um dos autores retornados pelo feed de notícias.
       O método criado deve ser chamado logo após a criação da caixa de seleção, e também toda vez que uma nova mensagem for postada.
     - Alterar o método `atualizarAreaTextoFeed` para que ele carregue o feed de acordo com a escolha do usuário na caixa de seleção (dica: você pode obter a opção escolhida pelo usuário usando os métodos `getItemAt`e `getSelectedIndex` da classe `JComboBox`)
-    - Tratar o evento de clique da caixa de seleção da mesma forma que fazemos para os botões e atualizar o feed de notícias de acordo com o autor escolhido. **Importante**: quando os itens da caixa de seleção são alterados, o evento de clique é gerado; então, para evitar erros, é necessário garantir que a atualização do feed não será feita enquanto os itens estão sendo recarregados (dica: use um `boolean` para isso).
-    - Dica: seria interessante acrescentar também um rótulo para informar o autor que a caixa de seleção é para escolher o autor.
+    - Tratar o evento de clique da caixa de seleção da mesma forma que fazemos para os botões e atualizar o feed de notícias de acordo com o autor escolhido. **Importante**: quando os itens da caixa de seleção são alterados, um evento de clique é gerado automaticamente; então, para evitar erros, é necessário garantir que a atualização do feed não será feita enquanto os itens estão sendo recarregados (dica: use um atributo `boolean` para isso).
+    - Dica: seria interessante acrescentar também um rótulo (`JLabel`) para informar o autor que a caixa de seleção serve para filtrar as mensagens pelo autor.
 
 Teste suas implementações.
 
@@ -117,8 +117,7 @@ O botão `Curtir` e o botão `Comentar` pedem para o usuário o identificador da
 Mas se o usuário informar um identificador de uma mensagem que não existe, ocorre um erro na aplicação (você pode ver a mensagem de erro no terminal da IDE).
 O que poderia ser feito para evitar este tipo de problema?
 O método no Feed de Notícias poderia alterar seu tipo de retorno, por exemplo?
-
-- Quais são as vantagens e desvantagens dessa abordagem?
+Quais seriam as vantagens e desvantagens dessa abordagem?
 
 *... escreva aqui sua resposta ...*
 
@@ -164,7 +163,7 @@ Dessa forma, ao lançarmos uma exceção com essa classe, não precisamos nos pr
 
 Faça com que seja lançada uma exceção da classe criada.
 Altere a classe `TelaRedeSocial` para que capture uma exceção desse tipo e defina sua própria mensagem para o usuário buscando o identificador da mensagem a partir do objeto da exceção.
-(Obs.: nesse exemplo específico, não seria necessário obter o id da classe de exceção, pois temos isso em uma variável no método onde ocorre o erro; mas é apenas uma maneira didática de exercitar o conceito).
+(Obs.: nesse exemplo específico, não seria necessário obter o id da classe de exceção, pois provavelmente temos como pegar isso de uma variável no método onde ocorre o erro; mas é apenas uma maneira didática de exercitarmos o conceito).
 
 ### (Opcional) Passo 2.6:
 
