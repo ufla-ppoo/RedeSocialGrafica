@@ -9,7 +9,7 @@ A implementação usa como base uma versão traduzida do exemplo do livro *Progr
 Em relação ao projeto de exemplo `RedeSocial`, usado anteriormente nas aulas de Polimorfismo, este projeto acrescenta:
 
 - Um atributo ID (identificador) para cada mensagem.
-- A implementação das operações de curtir e comentar na classe `FeedNoticiais`.
+- A implementação das operações de curtir e comentar na classe `FeedNoticias`.
 - Uma interface chamada `Publicacao` que é implementada pela classe `Mensagem`.
 - Uma classe chamada `TelaRedeSocial` que implementa a interface gráfica para a Rede Social.
 
@@ -133,8 +133,7 @@ O botão `Curtir` e o botão `Comentar` pedem para o usuário o identificador da
 Mas se o usuário informar um identificador de uma mensagem que não existe, ocorre um erro na aplicação (você pode ver a mensagem de erro no terminal da IDE).
 O que poderia ser feito para evitar este tipo de problema?
 O método no Feed de Notícias poderia alterar seu tipo de retorno, por exemplo?
-
-- Quais são as vantagens e desvantagens dessa abordagem?
+Quais seriam as vantagens e desvantagens dessa abordagem?
 
 *... escreva aqui sua resposta ...*
 
@@ -180,7 +179,7 @@ Dessa forma, ao lançarmos uma exceção com essa classe, não precisamos nos pr
 
 Faça com que seja lançada uma exceção da classe criada.
 Altere a classe `TelaRedeSocial` para que capture uma exceção desse tipo e defina sua própria mensagem para o usuário buscando o identificador da mensagem a partir do objeto da exceção.
-(Obs.: nesse exemplo específico, não seria necessário obter o id da classe de exceção, pois temos isso em uma variável no método onde ocorre o erro; mas é apenas uma maneira didática de exercitar o conceito).
+(Obs.: nesse exemplo específico, não seria necessário obter o id da classe de exceção, pois provavelmente temos como pegar isso de uma variável no método onde ocorre o erro; mas é apenas uma maneira didática de exercitarmos o conceito).
 
 ### (Opcional) Passo 2.6:
 
