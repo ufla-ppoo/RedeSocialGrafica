@@ -1,3 +1,4 @@
+package feed;
 /**
  * Subclasse da classe Mensagem que define uma Mensagem de Texto.
  * Acrescenta apenas o texto da mensagem em si

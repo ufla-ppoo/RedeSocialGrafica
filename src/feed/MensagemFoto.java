@@ -1,3 +1,4 @@
+package feed;
 /**
  * Subclasse da classe Mensagem que define uma Mensagem que possui foto.
  * Como a Rede Social eh de linha de comando :) na verdade guarda apenas o nome

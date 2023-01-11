@@ -1,3 +1,4 @@
+package feed;
 /**
  * Interface que representa uma publicação somente-leitura do Feed de Notícias da Rede Social
  * 

@@ -1,3 +1,4 @@
+package iu;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -13,6 +14,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+
+import feed.FeedNoticias;
+import feed.Publicacao;
 
 /**
  * Classe criada para implementar a interface gráfica da Rede Social.
