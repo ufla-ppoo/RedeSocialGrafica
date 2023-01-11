@@ -40,11 +40,18 @@ Acrescente na tela um botão `Atualizar` que recarregue o Feed de Notícias.
 
 O Feed de Notícias da Rede Social tem tamanho fixo.
 Se as mensagens não couberem na tela, elas simplesmente não aparecem.
-Vamos melhorar isso colocando o componente que mostra o feed de notícias dentro de um `JScrollPane` (um painel que mostra barras de rolagem quando necessário).
+Experimente, por exemplo, postar muitas mensagens até não caberem na tela (você pode postar apenas duas mensagens, por exemplo, e diminuir o tamanho da tela).
 
-Para fazer isso, basta:
-- Criar um `JScrollPane` passando o componente do feed como parâmetro do construtor.
+
+Vamos melhorar isso colocando o componente que mostra o feed de notícias dentro de um `JScrollPane`.
+
+Um `JScrollPane` é um objeto que permite acrescentar a funcionalidade de barra de rolagem ao componente `JTextArea`.
+
+- Ele acaba funcionando como uma camada intermediária entre o `JPanel` e o `JTextArea`.
+- Portanto, você deve criar um `JScrollPane` passando o componente do feed (`JTextArea`) como parâmetro do construtor.
 - E então adicionar o `JScrollPane` na janela (ao invés do componente do feed).
+
+Teste a sua implementação, verificando se a barra de rolagem apareceu quando necessário.
 
 ### Passo 1.4
 
