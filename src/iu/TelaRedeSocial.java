@@ -129,9 +129,15 @@ public class TelaRedeSocial {
      */
     private void postarMensagem() {
         String autor = JOptionPane.showInputDialog("Autor da mensagem");
-        String mensagem = JOptionPane.showInputDialog("Texto da mensagem");        
-        feed.postarMensagemTexto(autor, mensagem);        
-        atualizarAreaTextoFeed();
+        // Se o usuário digitou algum autor e confirmou
+        if(autor != null) {
+            String mensagem = JOptionPane.showInputDialog("Texto da mensagem");
+            // Se o usuário digitou alguma mensagem e confirmou
+            if (mensagem != null) {
+                feed.postarMensagemTexto(autor, mensagem);        
+                atualizarAreaTextoFeed();
+            }
+        }
     }
     
     /**
