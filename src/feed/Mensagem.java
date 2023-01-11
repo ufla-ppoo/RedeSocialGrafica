@@ -88,7 +88,7 @@ public abstract class Mensagem implements Publicacao  {
      */
     @Override
     public String getTextoExibicao() {
-        String texto = "  [" + id + "]   " + autor + ": " + getConteudoTextoExibicao();
+        String texto = "  [" + id + "]   " + autor + " escreveu: " + getConteudoTextoExibicao();
         texto += "\n\t" + getTextoTempo();
         texto += "\n\t" + nroCurtidas + " pessoas curtiram isso!";
         texto += "\n" + getTextoComentarios();
@@ -126,9 +126,10 @@ public abstract class Mensagem implements Publicacao  {
         if (comentarios.isEmpty()) {
             texto += "\tNao ha comentarios...\n";
         }
-        else {            
+        else {
+            texto += "\tComentários:\n";
             for (String comentario : comentarios) {	
-                texto += "\t" + comentario + "\n";
+                texto += "\t\t" + comentario + "\n";
             }            
         }
         return texto;
