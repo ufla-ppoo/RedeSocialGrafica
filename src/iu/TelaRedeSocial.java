@@ -98,13 +98,15 @@ public class TelaRedeSocial {
     private void montarJanela() {
         janela.setSize(500, 600);
         
-        // Para mais detalhes sobre o BorderLayout acesse:
-        // https://docs.oracle.com/javase/tutorial/uiswing/layout/border.html
         janela.setLayout(new BorderLayout());
+
+        JPanel painelSuperior = new JPanel();
+        painelSuperior.setLayout(new FlowLayout());
+        painelSuperior.add(new JLabel("Feed de Notícias"));
+        janela.add(painelSuperior, BorderLayout.NORTH);
         
         JPanel painelCentral = new JPanel();
         painelCentral.setLayout(new BoxLayout(painelCentral, BoxLayout.Y_AXIS));
-        painelCentral.add(new JLabel("Feed de Notícias"));
         painelCentral.add(areaTextoFeed);
         janela.add(painelCentral, BorderLayout.CENTER);
         
