@@ -10,7 +10,7 @@ Em relação ao projeto de exemplo `RedeSocial`, usado anteriormente nas aulas d
 
 - Um atributo ID (identificador) para cada mensagem.
 - A implementação das operações de curtir e comentar na classe `FeedNoticiais`.
-- Uma interface chamada `Publicacao` que é implementada pela classe Mensagem.
+- Uma interface chamada `Publicacao` que é implementada pela classe `Mensagem`.
 - Uma classe chamada `TelaRedeSocial` que implementa a interface gráfica para a Rede Social.
 
 ## Exercícios - Parte 1 - Interfaces Gráficas
@@ -52,13 +52,13 @@ Que tal mudarmos a fonte do nosso Feed de Notícias?
 
 A classe `JTextArea` tem um método chamado `setFont` que muda a fonte utilizada.
 Ele espera um objeto da classe `Font` que pode ser criado passando-se o nome da fonte, um estilo e o tamanho da fonte (ex: `new Font("Serif", Font.ITALIC, 16)`).
-Fique à vontade para escolher a fonte que prefere utilizar.
+Fique à vontade para escolher a fonte e o estilo que prefere utilizar.
 
 ### Passo 1.5
 
 Nossa Rede Social mostra no Feed de Notícias as mensagens de todos os autores. 
-Suponha que queiramos uma forma mais simples de encontrar as mensagens de um determinado autor.
-Podemos, por exemplo, criar uma caixa de seleção para selecionar um autor, e o Feed de Notícias mostrar apenas as mensagens daquele autor.
+Mas suponha que queiramos uma forma mais simples de encontrar as mensagens de um determinado autor.
+Podemos, por exemplo, criar uma caixa de seleção para selecionar um autor, e o Feed de Notícias ser filtrado para mostrar apenas as mensagens daquele autor.
 Para isso, faça o seguinte:
 
 1. Altere a classe `FeedNoticias` para que ela tenha uma lista com os autores das mensagens.
@@ -66,7 +66,7 @@ Para isso, faça o seguinte:
    Crie também um método para retornar a lista com todos os autores (cuidado com o encapsulamento!).
    Faça as alterações necessárias e teste o programa.
 
-2. Na classe `FeedNoticias`, crie uma sobrecarga do método `getPublicacoes` que recebe um autor por parâmetro e retorna  apenas as mensagens dele.
+2. Na classe `FeedNoticias`, crie uma sobrecarga do método `getPublicacoes` que recebe um autor por parâmetro e retorna apenas as mensagens dele.
    Teste sua implementação.
 
 3. Vamos agora acrescentar à nossa tela uma caixa para o usuário selecionar o autor das mensagens que ele quer ver.
@@ -80,8 +80,24 @@ Para isso, faça o seguinte:
       Você deve sempre adicionar primeiro a string `"Todos"` e, depois, cada um dos autores retornados pelo feed de notícias.
       O método criado deve ser chamado logo após a criação da caixa de seleção, e também toda vez que uma nova mensagem for postada.
     - Alterar o método `atualizarAreaTextoFeed` para que ele carregue o feed de acordo com a escolha do usuário na caixa de seleção (dica: você pode obter a opção escolhida pelo usuário usando os métodos `getItemAt`e `getSelectedIndex` da classe `JComboBox`)
-    - Tratar o evento de clique da caixa de seleção da mesma forma que fazemos para os botões e atualizar o feed de notícias de acordo com o autor escolhido. **Importante**: quando os itens da caixa de seleção são alterados, o evento de clique é gerado; então, para evitar erros, é necessário garantir que a atualização do feed não será feita enquanto os itens estão sendo recarregados (dica: use um `boolean` para isso).
-    - Dica: seria interessante acrescentar também um rótulo para informar o autor que a caixa de seleção é para escolher o autor.
+    - Tratar o evento de clique da caixa de seleção da mesma forma que fazemos para os botões e atualizar o feed de notícias de acordo com o autor escolhido. **Importante**: quando os itens da caixa de seleção são alterados, o evento de clique é gerado; então, para evitar erros, é necessário garantir que a atualização do feed não será feita enquanto os itens estão sendo recarregados (veja dica abaixo).
+    - Seria interessante acrescentar também um rótulo para que o usuário saiba que a caixa de seleção é para escolher o autor.
+
+> **Dica** sobre o possível erro ao recarregar a caixa de seleção: 
+> 
+> A questão é que no método que preenche a caixa de seleção, há uma chamada a um método que remove todos os itens da caixa. E, quando isso acontece, um evento de seleção da caixa pode ser gerado (e isso é tratado em outra thread). Com isso, o restante do método que preenche a caixa de seleção, e o tratamento do evento (que chama o atualizar) acabam sendo executados em paralelo. Esse paralelismo pode causar erros no método de atualização.
+> 
+> A ideia então é evitar que as duas coisas possam rodar em paralelo. Para isso, podemos alterar o método que preenche a caixa de seleção, acrescentado um atributo booleano que informe se os dados estão sendo carregados ou não. Algo como:
+> 
+> ```java
+> public void preencherCaixaAutores() {
+>     carregando = true;
+>     // ... código que você já tinha feito no método
+>     carregando = false;
+> }
+> ```
+> 
+> Agora, no tratamento do evento da caixa de seleção, usamos o booleano `carregando` para só chamar o método de atualização se a variável for `false` (ou seja, se a caixa não estiver sendo carregada).
 
 Teste suas implementações.
 
