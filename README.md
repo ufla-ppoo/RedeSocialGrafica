@@ -36,6 +36,8 @@ Faça as implementações necessárias para que ele passe a funcionar (dica: vej
 
 Acrescente na tela um botão `Atualizar` que recarregue o Feed de Notícias.
 
+Obs.: se você colocar um texto muito grande no botão pode ser que ele não apareça por não caber na tela.
+
 ### Passo 1.3
 
 O Feed de Notícias da Rede Social tem tamanho fixo.
