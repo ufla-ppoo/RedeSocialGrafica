@@ -63,8 +63,10 @@ A classe `JTextArea` tem um método chamado `setFont` que muda a fonte utilizada
 Ele espera um objeto da classe `Font` que pode ser criado passando-se o nome da fonte, um estilo e o tamanho da fonte (ex: `new Font("Serif", Font.ITALIC, 16)`).
 Fique à vontade para escolher a fonte e o estilo que prefere utilizar.
 
-Dica: nem sempre o VS Code consegue identificar automaticamente o pacote onde se encontra a classe `Font`.
-Se tiver esse problema, lembre-se que basta importar a classe manualmente usando `import java.awt.Font;`.
+> Dica 1: nem sempre o VS Code consegue identificar automaticamente o pacote onde se encontra a classe `Font`.
+> Se tiver esse problema, lembre-se que basta importar a classe manualmente usando `import java.awt.Font;`.
+
+> Dica 2: A fonte utilizada precisa estar instalada em seu Sistema Operacional. Se usar uma fonte não instalada, o programa usará alguma padrão.
 
 ### Passo 1.5
 
