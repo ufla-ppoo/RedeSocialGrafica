@@ -153,7 +153,7 @@ public class TelaRedeSocial {
     }    
 
     /**
-     * Atauliza a área de texto de exibição do Feed.
+     * Atualiza a área de texto de exibição do Feed.
      */
     private void atualizarAreaTextoFeed() {  
         // Limpa a lista de publicações
