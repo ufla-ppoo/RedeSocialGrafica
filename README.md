@@ -30,7 +30,9 @@ Veja que a interface `Publicacao` foi criada para que a classe `TelaRedeSocial` 
 ### Passo 1.1
 
 Você deve ter notado que o botão `Comentar` não está fazendo nada. 
-Faça as implementações necessárias para que ele passe a funcionar (dica: veja o tratamento do botão `Curtir` como exemplo).
+Faça as implementações necessárias para que ele passe a funcionar (obs.: não é necessário tratar o autor).
+
+> Dica: veja o tratamento do botão `Curtir` como exemplo.
 
 ### Passo 1.2
 
