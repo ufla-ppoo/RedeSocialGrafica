@@ -147,9 +147,10 @@ Assim como na primeira parte, não se esqueça de:
 
 O botão `Curtir` e o botão `Comentar` pedem para o usuário o identificador da mensagem.
 Mas se o usuário informar um identificador de uma mensagem que não existe, ocorre um erro na aplicação (você pode ver a mensagem de erro no terminal da IDE).
-O que poderia ser feito para evitar este tipo de problema?
-O método no Feed de Notícias poderia alterar seu tipo de retorno, por exemplo?
-Quais seriam as vantagens e desvantagens dessa abordagem?
+
+1. O que poderia ser feito para evitar este tipo de problema?
+2. Os métodos `curtir` e `comentar` da classe `FeedNoticias` poderiam ter seu tipo de retorno alterado, por exemplo?
+3. Quais seriam as vantagens e desvantagens de utilizar a estratégia do item (2) ou de se utilizar tratamento de exceções?
 
 *... escreva aqui sua resposta ...*
 
