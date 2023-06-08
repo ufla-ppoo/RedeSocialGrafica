@@ -25,7 +25,7 @@ Não esqueça de:
 Execute o programa e veja como ele funciona (o que faz e o que ainda não faz).
 
 Em seguida avalie o código do programa.
-Veja que a interface `Publicacao` foi criada para que a classe `TelaRedeSocial` tivesse acesso às publicações, mas sem poder alterá-las (diminuindo o acoplamento).
+Veja que a interface `Publicacao` foi criada para que a classe `TelaRedeSocial` tivesse acesso às publicações, mas sem poder alterá-las (respeitando o encapsulamento e diminuindo o acoplamento).
 
 ### Passo 1.1
 
@@ -46,7 +46,6 @@ O Feed de Notícias da Rede Social tem tamanho fixo.
 Se as mensagens não couberem na tela, elas simplesmente não aparecem.
 Experimente, por exemplo, postar muitas mensagens até não caberem na tela (você pode postar apenas duas mensagens, por exemplo, e diminuir o tamanho da tela).
 
-
 Vamos melhorar isso colocando o componente que mostra o feed de notícias dentro de um `JScrollPane`.
 
 Um `JScrollPane` é um objeto que permite acrescentar a funcionalidade de barra de rolagem ao componente `JTextArea`.
@@ -59,6 +58,20 @@ Teste a sua implementação, verificando se a barra de rolagem apareceu quando n
 
 ### Passo 1.4
 
+Os componentes da biblioteca Swing que estamos utilizando para construir as interfaces gráficas têm um visual com cara de software "antigo".
+Podemos melhorar isso utilizando a [biblioteca FlatLaf](https://www.formdev.com/flatlaf/).
+Com ela, podemos deixar nossos programas com um visual mais moderno e atraente, acrescentando apenas duas linhas de código.
+
+Vamos então usar a biblioteca FlatLaf para mudar o visual da Rede Social Gráfica.
+Para isso, siga os passos abaixo:
+
+1. Adicione a biblioteca (arquivo de extensão `.jar`) na pasta lib do projeto - Obs.: isso já foi feito para você ;)
+2. Importe a classe `FlatDarkLaf`, acrescentando a linha `import com.formdev.flatlaf.FlatDarkLaf;` ao arquivo `TelaRedeSocial.java`.
+3. Acrescente a chamada `FlatDarkLaf.setup();` logo após a criação da janela no método `construirJanela` da classe `TelaRedeSocial`.
+4. Execute seu programa e veja o que mudou.
+
+### Passo 1.5
+
 Que tal mudarmos a fonte do nosso Feed de Notícias?
 
 A classe `JTextArea` tem um método chamado `setFont` que muda a fonte utilizada.
@@ -70,7 +83,7 @@ Fique à vontade para escolher a fonte e o estilo que prefere utilizar.
 
 > Dica 2: A fonte utilizada precisa estar instalada em seu Sistema Operacional. Se usar uma fonte não instalada, o programa usará alguma padrão.
 
-### Passo 1.5
+### Passo 1.6
 
 Nossa Rede Social mostra no Feed de Notícias as mensagens de todos os autores. 
 Mas suponha que queiramos uma forma mais simples de encontrar as mensagens de um determinado autor.
@@ -146,50 +159,58 @@ Assim como na primeira parte, não se esqueça de:
 ### Passo 2.1
 
 O botão `Curtir` e o botão `Comentar` pedem para o usuário o identificador da mensagem.
-Mas se o usuário informar um identificador de uma mensagem que não existe, ocorre um erro na aplicação (você pode ver a mensagem de erro no terminal da IDE).
+Mas se o usuário informar um identificador de uma mensagem que não existe, ocorre um erro na aplicação (você pode ver a mensagem de erro no terminal do VS Code).
 
-1. O que poderia ser feito para evitar este tipo de problema?
-2. Os métodos `curtir` e `comentar` da classe `FeedNoticias` poderiam ter seu tipo de retorno alterado, por exemplo?
-3. Quais seriam as vantagens e desvantagens de utilizar a estratégia do item (2) ou de se utilizar tratamento de exceções?
+Neste passo e no passo seguinte vamos tratar essa questão, mas com estratégias diferentes para cada um e depois analisarmos as vantagens e desvantagens de cada estratégia.
 
-*... escreva aqui sua resposta ...*
+Neste passo, altere o método que trata **as curtidas** na classe de Feed de Notícias para que ele retorne um booleano indicando se a mensagem foi realmente curtida ou não.
+Portanto, quando a mensagem não existir, o método deve retornar `false`.
+
+Em seguida, faça o tratamento da operação de curtir na classe `TelaRedeSocial`, usando o retorno booleano do método da classe de Feed de Notícias e informando o usuário caso o identificador digitado seja de uma mensagem que não existe.
+
+> Dica: você pode usar a classe `JOptionPane` para exibir uma mensagem como no exemplo abaixo:
+> ```java
+> JOptionPane.showMessageDialog(janela, "Uma mensagem de erro", "Um titulo", JOptionPane.ERROR_MESSAGE);
+> ```
 
 ### Passo 2.2:
 
-Altere o método que trata as curtidas no Feed de Notícias para que ele lance uma exceção caso o identificador da mensagem não exista (use exceção do tipo `RuntimeException`).
+Agora, vamos alterar o método que trata os comentários na classe de Feed de Notícias.
+Mas, nesse caso, vamos alterar o método de forma que ele lance uma exceção caso o identificador da mensagem não exista (use exceção do tipo `RuntimeException`).
 
 Teste sua aplicação sem ainda tratar a exceção.
 Veja que a mensagem de erro que aparece é a que você usou ao criar o objeto da exceção.
 
 Agora faça o tratamento da exceção na classe `TelaRedeSocial`.
-Por enquanto, apenas exiba a mensagem tratada para o usuário
+Por enquanto, apenas exiba a mensagem tratada para o usuário.
 
-Dica: você pode usar a classe `JOptionPane` para exibir uma mensagem como no exemplo abaixo:
+### Passo 2.3
 
-```java
-JOptionPane.showMessageDialog(janela, "Uma mensagem de erro", "Um titulo", JOptionPane.ERROR_MESSAGE);
-```
+1. O que você achou das estratégias que adotamos para tratar a operação de curtir (retorno booleano) e de comentar (usando exceções)?
+2. Quais lhe parecem ser as vantagens e desvantagens de usar cada uma das estratégias?
 
-### Passo 2.3:
+*... escreva aqui sua resposta ...*
 
-Como podemos nos recuperar da exceção em nosso caso?
-Poderíamos pedir para o usuário que informasse o identificador da mensagem novamente, certo?
+### Passo 2.4
+
+Em relação à exceção gerada no tratamento da operação de comentar, como podemos nos recuperar da exceção?
+Poderíamos pedir para o usuário informar o identificador da mensagem novamente, certo?
 
 Altere então o código de forma que o programa continue pedindo o identificador para o usuário até ele digitar um identificador válido.
 
-### Passo 2.4:
+### Passo 2.5:
 
-Depois da alteração anterior, o que acontece com seu programa caso o usuário tente curtir uma mensagem antes de existir qualquer publicação?
+Depois da alteração anterior, o que acontece com seu programa caso o usuário tente comentar uma mensagem antes de existir qualquer publicação?
 Caso não tenha tratado esse caso, faça o tratamento adequado agora.
 
-### Passo 2.5:
+### Passo 2.6:
 
 Do jeito que fizemos até agora, o programa apenas exibe a mesma mensagem de erro da exceção.
 Mas pode ser que queiramos exibir uma mensagem mais amigável para o usuário.
-A mensagem do lançamento da exceção é escrita para outros programadores e nem sempre faz sentido para um usuário.
+A mensagem do lançamento da exceção é escrita para outros programadores e nem sempre faz sentido para um usuário do progrma.
 Dessa forma, pode ser interessante capturar a exceção e usar os dados disponíveis nela para montar uma mensagem mais apropriada.
 
-Crie então um classe `MensagemNaoEncontradaException` que herda da classe `NoSuchElementException` (escolhemos herdar dela pois ela representa a situação do erro que estamos tratando).
+Crie então um classe `MensagemNaoEncontradaException` que herda da classe `NoSuchElementException` (escolhemos herdar dela pois ela representa melhor a situação do erro que estamos tratando).
 A classe deverá ter como atributo o identificador utilizado.
 Veja que o construtor pode receber apenas o identificador e não precisa, necessariamente, montar uma mensagem da exceção. 
 Dessa forma, ao lançarmos uma exceção com essa classe, não precisamos nos preocupar a mensagem.
@@ -198,7 +219,7 @@ Faça com que seja lançada uma exceção da classe criada.
 Altere a classe `TelaRedeSocial` para que capture uma exceção desse tipo e defina sua própria mensagem para o usuário buscando o identificador da mensagem a partir do objeto da exceção.
 (Obs.: nesse exemplo específico, não seria necessário obter o id da classe de exceção, pois provavelmente temos como pegar isso de uma variável no método onde ocorre o erro; mas é apenas uma maneira didática de exercitarmos o conceito).
 
-### (Opcional) Passo 2.6:
+### (Opcional) Passo 2.7:
 
 Altere o tratamento da exceção na classe de `TelaRedeSocial` para que o tratamento funcione apenas caso seja uma exceção do tipo que lançamos.
 Acrescente um tratamento genérico (`Exception`) que apenas mostra a mensagem de erro para os demais casos.
