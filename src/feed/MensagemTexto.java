@@ -9,7 +9,7 @@ package feed;
   * @author  Michael Kölling and David J. Barnes
  *          Traduzido e adaptado por Julio Cesar Alves
  */
-public class MensagemTexto extends Mensagem {
+class MensagemTexto extends Mensagem {
     // texto da mensagem    
     private String texto;
 	

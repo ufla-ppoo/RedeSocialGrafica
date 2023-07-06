@@ -10,7 +10,7 @@ package feed;
  * @author  Michael Kölling and David J. Barnes
  *          Traduzido e adaptado por Julio Cesar Alves
  */
-public class MensagemFoto extends Mensagem {
+class MensagemFoto extends Mensagem {
     // nome do arquivo que contem a foto
     private String arquivoFoto;
     // legenda da foto a ser usada na rede social

@@ -25,7 +25,10 @@ Não esqueça de:
 Execute o programa e veja como ele funciona (o que faz e o que ainda não faz).
 
 Em seguida avalie o código do programa.
+
 Veja que a interface `Publicacao` foi criada para que a classe `TelaRedeSocial` tivesse acesso às publicações, mas sem poder alterá-las (respeitando o encapsulamento e diminuindo o acoplamento).
+Inclusive as classes que representam mensagens não são públicas pois não precisam
+(e nem devem) estar acessíveis de fora do pacote `feed`.
 
 ### Passo 1.1
 

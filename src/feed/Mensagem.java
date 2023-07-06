@@ -13,7 +13,7 @@ import java.util.*;
  * @author  Michael Kölling and David J. Barnes
  *          Traduzido e adaptado por Julio Cesar Alves
  */
-public abstract class Mensagem implements Publicacao  {
+abstract class Mensagem implements Publicacao  {
 
     // Identificador da mensagem
     private int id;
