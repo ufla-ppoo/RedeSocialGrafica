@@ -71,7 +71,8 @@ Para isso, siga os passos abaixo:
 1. Adicione a biblioteca (arquivo de extensão `.jar`) na pasta lib do projeto - Obs.: isso já foi feito para você ;)
 2. Importe a classe `FlatDarkLaf`, acrescentando a linha `import com.formdev.flatlaf.FlatDarkLaf;` ao arquivo `TelaRedeSocial.java`.
 3. Acrescente a chamada `FlatDarkLaf.setup();` logo após a criação da janela no método `construirJanela` da classe `TelaRedeSocial`.
-4. Execute seu programa e veja o que mudou.
+   Obs.: precisa ser antes de criar os componentes da janela.
+5. Execute seu programa e veja o que mudou.
 
 ### Passo 1.5
 
@@ -133,14 +134,14 @@ Para isso, faça o seguinte:
 
 Teste suas implementações.
 
-### (Opcional) Passo 1.6
+### (Opcional) Passo 1.7
 
 Vamos criar um menu com as opções: `Postar Mensagem`, `Curtir`, `Comentar` e `Sair`.
 Crie os menus e trate os eventos conforme necessário.
 
 Dica: use os slides da aula de Interfaces Gráficas para ver exemplos de criação dos menus.
 
-### (Opcional) Passo 1.7
+### (Opcional) Passo 1.8
 
 Vamos agora fazer com que um menu *popup* apareça quando clicamos na área de texto do feed de notícias.
 Para isso, você precisará tratar os eventos de mouse da área de texto (use o método `addMouseListener`).
