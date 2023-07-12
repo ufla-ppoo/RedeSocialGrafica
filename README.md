@@ -124,13 +124,13 @@ Para isso, faça o seguinte:
 > 
 > ```java
 > public void preencherCaixaAutores() {
->     carregando = true;
+>     carregandoCaixaAutores = true;
 >     // ... código que você já tinha feito no método
->     carregando = false;
+>     carregandoCaixaAutores = false;
 > }
 > ```
 > 
-> Agora, no tratamento do evento da caixa de seleção, usamos o booleano `carregando` para só chamar o método de atualização se a variável for `false` (ou seja, se a caixa não estiver sendo carregada).
+> Agora, no tratamento do evento da caixa de seleção, usamos o booleano `carregandoCaixaAutores` para só chamar o método de atualização se a variável for `false` (ou seja, se a caixa não estiver sendo carregada).
 
 Teste suas implementações.
 
